@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test_app_1">
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.example.cucumber_mobile">
    <application
-        android:label="test_app_1"
+        android:label="cucumber_mobile"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
