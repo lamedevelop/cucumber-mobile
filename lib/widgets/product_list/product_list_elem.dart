@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:cucumber_mobile/models/product.dart';
+import 'package:cucumber_mobile/config/palette.dart' as palette;
 
 class ProductListElem extends StatefulWidget {
   final Product product;
@@ -17,45 +19,59 @@ class _ProductListElemState extends State<ProductListElem> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.topCenter,
+        children: <Widget>[
           Container(
-            height: 100,
-            width: 100,
-            decoration:
-                BoxDecoration(color: Color(0xFF2D538A), shape: BoxShape.circle),
-          ),
-          Container(
-            padding: const EdgeInsets.all(4),
-            width: MediaQuery.of(context).size.width * 0.30,
+            height: 125,
+            width: 125,
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(4)
+              color: palette.Blue.PRIMARY_ICON,
+              shape: BoxShape.circle,
             ),
-            child: Text(
-              widget.product.name,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 15,
+            child: Center(
+              child: Image.asset(
+                widget.product.image,
+                fit: BoxFit.fill,
+                height: 90.0,
               ),
             ),
           ),
-          const SizedBox(
-            height: 3,
+          Positioned(
+            bottom: -10,
+            child: Container(
+              padding: EdgeInsets.all(8),
+              width: MediaQuery.of(context).size.width * 0.30,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(7),
+              ),
+              child: Text(
+                widget.product.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: palette.Black.PRIMARY,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
           ),
-          Text(
-            widget.product.price,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25,
-              fontWeight: FontWeight.w700,
-              fontFamily: 'Bebas Neue',
+          Positioned(
+            bottom: -40,
+            child: Text(
+              widget.product.price.toString(),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Bebas Neue',
+              ),
             ),
           ),
         ],
       ),
     );
-    ;
   }
 }
