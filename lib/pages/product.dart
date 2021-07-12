@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:cucumber_mobile/widgets/product/product_description.dart';
 import 'package:cucumber_mobile/widgets/product/product_social.dart';
 import 'package:cucumber_mobile/widgets/product/product_wide_description.dart';
@@ -18,15 +19,15 @@ class _ProductState extends State<Product> {
         child: ListView(
           children: <Widget>[
             Image.asset(productImage,height: 300,),
-            const SizedBox(height: 8),
-            const ProductDescription(
+            SizedBox(height: 8),
+            ProductDescription(
               name: 'Молоко домашнее',
               volume: '1 литр',
               price: '178₽/шт',
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
             ProductSocial(),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
             ProductWideDescription(
               description: 'Много много молока',
             ),

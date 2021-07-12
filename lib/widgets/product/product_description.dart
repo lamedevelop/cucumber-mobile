@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:cucumber_mobile/config/palette.dart' as palette;
+
 class ProductDescription extends StatefulWidget {
   const ProductDescription({
     Key? key,
@@ -21,8 +23,8 @@ class _ProductDescriptionState extends State<ProductDescription> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.95,
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.all(15),
+      margin: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
@@ -35,7 +37,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
             style: TextStyle(
               fontSize: 35,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF313030),
+              color: palette.Black.PRIMARY,
             ),
           ),
           SizedBox(height: 5),
@@ -44,18 +46,18 @@ class _ProductDescriptionState extends State<ProductDescription> {
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w500,
-              color: Color(0xFFC4C4C4),
+              color: palette.Black.PRIMARY_LIGHT,
             ),
           ),
           SizedBox(height: 10),
           Container(
-            padding: const EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               horizontal: 15,
               vertical: 2,
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Color(0xFF323030),
+              color: palette.Black.PRIMARY,
             ),
             child: Text(
               widget.price,

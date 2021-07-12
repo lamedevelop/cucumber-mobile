@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ProductSocial extends StatefulWidget {
-  const ProductSocial({Key? key}) : super(key: key);
+import 'package:cucumber_mobile/config/palette.dart' as palette;
+import 'package:cucumber_mobile/config/icons.dart' as icons;
 
+class ProductSocial extends StatefulWidget {
   @override
   _ProductSocialState createState() => _ProductSocialState();
 }
 
 class _ProductSocialState extends State<ProductSocial> {
-  final String cart = 'assets/icons/cart.svg';
-  final String heart = 'assets/icons/heart.svg';
-  final String addList = 'assets/icons/add_list.svg';
-  final String message = 'assets/icons/message.svg';
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,26 +26,20 @@ class _ProductSocialState extends State<ProductSocial> {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xFF62C5A4),
+                color: palette.Green.PRIMARY_SOCIAL,
               ),
               child: IconButton(
-                icon: SvgPicture.asset(
-                  cart,
-                  height: 50,
-                ),
+                icon: SocialCard(icon: icons.CART),
                 onPressed: () => {},
               ),
             ),
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0x28D9335A),
+                color: palette.Red.PRIMARY_SOCIAL,
               ),
               child: IconButton(
-                icon: SvgPicture.asset(
-                  heart,
-                  height: 50,
-                ),
+                icon: SocialCard(icon: icons.HEART),
                 tooltip: 'Increase volume by 10',
                 onPressed: () => {},
               ),
@@ -57,30 +47,41 @@ class _ProductSocialState extends State<ProductSocial> {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0x2862C5A4),
+                color: palette.Green.PRIMARY_SOCIAL_LIGHT,
               ),
               child: IconButton(
-                icon: SvgPicture.asset(
-                  addList,
-                  height: 50,
-                ),
+                icon: SocialCard(icon: icons.LIST),
                 onPressed: () => {},
               ),
             ),
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0x2862C5A4),
+                color: palette.Green.PRIMARY_SOCIAL_LIGHT,
               ),
               child: IconButton(
-                icon: SvgPicture.asset(
-                  message,
-                  height: 50,
-                ),
+                icon: SocialCard(icon: icons.MESSAGE),
                 onPressed: () => {},
               ),
             ),
           ],
         ));
+  }
+}
+
+class SocialCard extends StatelessWidget {
+  const SocialCard({
+    Key? key,
+    required this.icon,
+  }) : super(key: key);
+
+  final String icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      icon,
+      height: 50,
+    );
   }
 }
