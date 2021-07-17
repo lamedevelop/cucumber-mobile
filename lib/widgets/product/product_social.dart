@@ -14,8 +14,8 @@ class _ProductSocialState extends State<ProductSocial> {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width * 0.95,
-        padding: const EdgeInsets.all(15),
-        margin: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30),

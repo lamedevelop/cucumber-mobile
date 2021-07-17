@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:cucumber_mobile/config/palette.dart' as palette;
 
 class ProductWideDescription extends StatefulWidget {
-  const ProductWideDescription({
+  const ProductWideDescription(
+    this.description, {
     Key? key,
-    required this.description,
   }) : super(key: key);
 
   final String description;
@@ -20,9 +20,7 @@ class _ProductWideDescriptionState extends State<ProductWideDescription> {
     return Container(
       width: MediaQuery.of(context).size.width * 0.95,
       padding: EdgeInsets.all(15),
-      margin: EdgeInsets.symmetric(
-        horizontal: 20,
-      ),
+      margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),

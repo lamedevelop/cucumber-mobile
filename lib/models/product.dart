@@ -6,9 +6,9 @@ class Product {
   final String description;
 
   Product({
-    this.image = "assets/images/milk.png",
-    this.name = "Название",
-    this.volume = '0',
+    this.image = 'assets/images/milk.png',
+    this.name = '',
+    this.volume = '',
     this.price = 0,
     this.description = '',
   });
@@ -23,3 +23,5 @@ class Product {
     );
   }
 }
+
+List<Product> sampleData = [];

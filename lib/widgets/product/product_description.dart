@@ -24,7 +24,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
     return Container(
       width: MediaQuery.of(context).size.width * 0.95,
       padding: EdgeInsets.all(15),
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
