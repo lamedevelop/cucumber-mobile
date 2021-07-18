@@ -1,7 +1,6 @@
 # Cucumber mobile
 Mobile app for cucumber food delivery project
 
----
 
 ### Quickstart
 
@@ -28,7 +27,8 @@ lib
 ├── config           - bunch of constants
 ├── models           - data models
 ├── pages            - project screens
-├── provides         - network data providers (api handlers)├── wigets           - components to build pages
+├── provides         - network data providers (api handlers)
+├── wigets           - components to build pages
 ├── main.dart        - Flutter application 
 └── routes.dart      - all app routes (pages)
 ```
