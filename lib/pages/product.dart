@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cucumber_mobile/widgets/product/product_description.dart';
-import 'package:cucumber_mobile/widgets/product/product_social.dart';
-import 'package:cucumber_mobile/widgets/product/product_wide_description.dart';
+
+import 'package:cucumber_mobile/widgets/product/product.dart';
+import 'package:cucumber_mobile/widgets/custom_scaffold.dart';
 
 class Product extends StatefulWidget {
   @override
@@ -13,25 +13,39 @@ class _ProductState extends State<Product> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: ListView(
-          children: <Widget>[
-            Image.asset(productImage,height: 300,),
-            const SizedBox(height: 8),
-            const ProductDescription(
-              name: 'Молоко домашнее',
-              volume: '1 литр',
-              price: '178₽/шт',
-            ),
-            const SizedBox(height: 10),
-            ProductSocial(),
-            const SizedBox(height: 10),
-            ProductWideDescription(
-              description: 'Много много молока',
-            ),
-          ],
+    return CustomScaffold(
+      body: _listViewBuilder(),
+      hasShortTopBar: true,
+    );
+  }
+
+  Widget _listViewBuilder() {
+    return ListView(
+      children: <Widget>[
+        _productImageBuilder(productImage),
+        ProductDescription(
+          name: 'Молоко домашнее',
+          volume: '1 литр',
+          price: '178₽/шт',
         ),
+        ProductSocial(),
+        ProductWideDescription('Много много молока'),
+        ProductWideDescription('Много много молока'),
+        ProductWideDescription('Много много молока'),
+        ProductWideDescription('Много много молока'),
+        ProductWideDescription('Много много молока'),
+        ProductWideDescription('Много много молока'),
+        SizedBox(height: 100),
+      ],
+    );
+  }
+
+  Widget _productImageBuilder(image) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+      child: Image.asset(
+        image,
+        height: 300,
       ),
     );
   }

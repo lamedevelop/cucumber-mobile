@@ -1,16 +1,16 @@
 class Product {
-  // final String image;
+  final String image;
   final String name;
-  // final String volume;
-  final String price;
-  // final String description;
+  final String volume;
+  final int price;
+  final String description;
 
   Product({
-    // required this.image,
-    required this.name,
-    // required this.volume,
-    required this.price,
-    // required this.description,
+    this.image = 'assets/images/milk.png',
+    this.name = '',
+    this.volume = '',
+    this.price = 0,
+    this.description = '',
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -18,8 +18,10 @@ class Product {
       // image: json['image'],
       name: json['p_name'],
       // volume: json['volume'],
-      price: json['p_price'].toString(),
+      price: json['p_price'],
       // description: json['description'],
     );
   }
 }
+
+List<Product> sampleData = [];
