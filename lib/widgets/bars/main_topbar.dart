@@ -7,17 +7,47 @@ class MainTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        IconButton(
-          iconSize: 50,
-          onPressed: () {},
-          icon: SvgPicture.asset(
-            icons.MENU,
-            fit: BoxFit.fitWidth,
+        Container(
+          width: 65,
+          margin: EdgeInsets.only(left: 27),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
           ),
-        ), // Your widgets here
+          child: MaterialButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            elevation: 4,
+            child: SvgPicture.asset(
+              icons.MENU,
+              height: 65,
+              fit: BoxFit.scaleDown,
+            ),
+            padding: EdgeInsets.all(0),
+            shape: CircleBorder(),
+          ),
+        ),
+        Container(
+          width: 65,
+          margin: EdgeInsets.only(right: 9),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+          ),
+          child: MaterialButton(
+            onPressed: () {},
+            elevation: 4,
+            child: SvgPicture.asset(
+              icons.LEFT_ARROW,
+              height: 65,
+              fit: BoxFit.scaleDown,
+            ),
+            padding: EdgeInsets.all(0),
+            shape: CircleBorder(),
+          ),
+        ),
       ],
     );
   }

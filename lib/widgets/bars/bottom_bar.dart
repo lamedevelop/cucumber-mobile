@@ -16,7 +16,7 @@ class BottomBarCustom extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Color(0x4BFFFFFF),
               offset: Offset(0, 15),
@@ -26,16 +26,16 @@ class BottomBarCustom extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          CircleIcon(icons.HOME, route_name.HOME),
-          CircleIcon(icons.WALLET, route_name.PRODUCT),
-          CircleIcon(icons.MESSAGE, route_name.PRODUCTS_LIST),
-          CircleIcon(icons.MAN, route_name.MAN),
+          _circleIconBuilder(icons.HOME, route_name.HOME),
+          _circleIconBuilder(icons.WALLET, route_name.PRODUCT),
+          _circleIconBuilder(icons.MESSAGE, route_name.PRODUCTS_LIST),
+          _circleIconBuilder(icons.MAN, route_name.MAN),
         ],
       ),
     );
   }
 
-  Widget CircleIcon(String icon, String routeName) {
+  Widget _circleIconBuilder(String icon, String routeName) {
     return Container(
       width: 45,
       decoration: BoxDecoration(

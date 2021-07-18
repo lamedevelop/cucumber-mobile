@@ -11,7 +11,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "cucumber-mobile",
+      title: 'cucumber-mobile',
       theme: ThemeData(
         primaryColor: palette.Black.PRIMARY,
         scaffoldBackgroundColor: palette.Black.PRIMARY,
