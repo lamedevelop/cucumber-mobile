@@ -18,6 +18,10 @@ class ProductListElem extends StatefulWidget {
 class _ProductListElemState extends State<ProductListElem> {
   @override
   Widget build(BuildContext context) {
+    return _elemBuilder();
+  }
+
+  Widget _elemBuilder() {
     return Center(
       child: Stack(
         clipBehavior: Clip.none,

@@ -7,16 +7,16 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: route_name.HOME,
     page: () => HomePage(),
-    transition: Transition.noTransition,
+    transition: Transition.cupertino,
   ),
   GetPage(
     name: route_name.PRODUCTS_LIST,
     page: () => ProductsList(),
-    transition: Transition.noTransition,
+    transition: Transition.downToUp,
   ),
   GetPage(
     name: route_name.PRODUCT,
     page: () => Product(),
-    transition: Transition.noTransition,
+    transition: Transition.fade,
   ),
 ];

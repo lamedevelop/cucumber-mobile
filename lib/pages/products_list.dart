@@ -6,6 +6,7 @@ import 'package:cucumber_mobile/models/product.dart';
 import 'package:cucumber_mobile/widgets/product_list/product_list.dart';
 import 'package:cucumber_mobile/provides/product_provider.dart';
 import 'package:cucumber_mobile/widgets/custom_scaffold.dart';
+import 'package:cucumber_mobile/config/palette.dart' as palette;
 
 class ProductsList extends StatefulWidget {
   @override
@@ -41,7 +42,7 @@ class _ProductsListState extends State<ProductsList> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       body: _isWaitForLoading
-          ? Center(child: CircularProgressIndicator())
+          ? _emptyGridViewBuilder()
           : _gridViewBuilder(_products),
     );
   }
@@ -54,6 +55,58 @@ class _ProductsListState extends State<ProductsList> {
           product: products[index],
         );
       }),
+    );
+  }
+
+  Widget _emptyGridViewBuilder() {
+    return GridView.count(
+      crossAxisCount: 2,
+      children: List.generate(6, (index) {
+        return _emptyElemBuilder();
+      }),
+    );
+  }
+
+  Widget _emptyElemBuilder() {
+    return Center(
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.width * 0.30,
+            width: MediaQuery.of(context).size.width * 0.30,
+            decoration: BoxDecoration(
+              color: palette.Blue.PRIMARY_ICON,
+              shape: BoxShape.circle,
+            ),
+          ),
+          Positioned(
+            bottom: -10,
+            child: Container(
+              padding: EdgeInsets.all(8),
+              width: MediaQuery.of(context).size.width * 0.30,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(7),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: palette.Black.PRIMARY,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: -40,
+            child: Container(
+              decoration: BoxDecoration(
+                color: palette.Black.PRIMARY,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
