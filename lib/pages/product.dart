@@ -15,6 +15,7 @@ class _ProductState extends State<Product> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       body: _listViewBuilder(),
+      hasShortTopBar: true,
     );
   }
 

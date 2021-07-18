@@ -6,7 +6,7 @@ import 'package:cucumber_mobile/config/palette.dart' as palette;
 class CustomScaffold extends StatelessWidget {
   final bool hasTopBar;
   final bool hasBottomBar;
-  final bool hasDrawer;
+  final bool hasShortTopBar;
   final Widget body;
 
   const CustomScaffold({
@@ -14,7 +14,7 @@ class CustomScaffold extends StatelessWidget {
     required this.body,
     this.hasTopBar = true,
     this.hasBottomBar = true,
-    this.hasDrawer = true,
+    this.hasShortTopBar = false,
   }) : super(key: key);
 
   @override
@@ -27,14 +27,14 @@ class CustomScaffold extends StatelessWidget {
           hasBottomBar ? _bottomBarBuilder(context) : Container(child: null),
         ]),
       ),
-      drawer: hasDrawer ? _drawerBuilder(context) : null,
+      drawer: hasTopBar && !hasShortTopBar ? _drawerBuilder(context) : null,
     );
   }
 
   Widget _topBarBuilder(BuildContext context) {
     return Positioned(
       top: 0,
-      child: MainTopBar(),
+      child: hasShortTopBar ? ShortTopBar() : MainTopBar(),
       width: MediaQuery.of(context).size.width,
     );
   }
