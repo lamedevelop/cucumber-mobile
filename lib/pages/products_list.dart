@@ -61,12 +61,80 @@ class _ProductsListState extends State<ProductsList> {
 
   Widget _emptyGridViewBuilder() {
     final int _crossAxisCount = MediaQuery.of(context).size.width ~/ 240;
-    return GridView.count(
-      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-      crossAxisCount: _crossAxisCount,
-      children: List.generate(6, (index) {
-        return _emptyElemBuilder();
-      }),
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(height: 63),
+          Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Container(
+                height: 123,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: palette.Blue.PRIMARY_COUNT,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    )),
+              ),
+              Positioned(
+                bottom: 58,
+                child: Shimmer.fromColors(
+                  baseColor: Colors.white,
+                  highlightColor: Colors.white.withOpacity(0.85),
+                  child: Container(
+                      height: 41,
+                      width: MediaQuery.of(context).size.width * 0.58,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(7),
+                      )),
+                ),
+              ),
+              Positioned(
+                bottom: 37,
+                child: Shimmer.fromColors(
+                  baseColor: palette.Black.PRIMARY_LIGHT,
+                  highlightColor: palette.Black.PRIMARY_LIGHT.withOpacity(0.85),
+                  child: Container(
+                    height: 10,
+                    width: MediaQuery.of(context).size.width * 0.41,
+                    decoration: BoxDecoration(
+                      color: palette.Black.PRIMARY_LIGHT,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 15,
+                child: Shimmer.fromColors(
+                  baseColor: palette.Black.PRIMARY_LIGHT,
+                  highlightColor: palette.Black.PRIMARY_LIGHT.withOpacity(0.85),
+                  child: Container(
+                    height: 10,
+                    width: MediaQuery.of(context).size.width * 0.32,
+                    decoration: BoxDecoration(
+                      color: palette.Black.PRIMARY_LIGHT,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: GridView.count(
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+              crossAxisCount: _crossAxisCount,
+              children: List.generate(6, (index) {
+                return _emptyElemBuilder();
+              }),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -89,30 +157,49 @@ class _ProductsListState extends State<ProductsList> {
             ),
           ),
           Positioned(
-            bottom: -10,
+            bottom: 10,
             child: Shimmer.fromColors(
               baseColor: Colors.white,
               highlightColor: Colors.white.withOpacity(0.85),
               child: Container(
                 padding: EdgeInsets.all(8),
-                width: 125,
+                width: 143,
+                height: 31,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(7),
                 ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: palette.Black.PRIMARY,
-                  ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 16,
+            child: Shimmer.fromColors(
+              baseColor: palette.Black.PRIMARY_LIGHT,
+              highlightColor: palette.Black.PRIMARY_LIGHT.withOpacity(0.85),
+              child: Container(
+                padding: EdgeInsets.all(8),
+                width: 120,
+                height: 19,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
             ),
           ),
           Positioned(
             bottom: -40,
-            child: Container(
-              decoration: BoxDecoration(
-                color: palette.Black.PRIMARY,
+            child: Shimmer.fromColors(
+              baseColor: Colors.white,
+              highlightColor: Colors.white.withOpacity(0.85),
+              child: Container(
+                width: 143,
+                height: 34,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(7),
+                ),
               ),
             ),
           ),
