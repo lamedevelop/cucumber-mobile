@@ -8,4 +8,5 @@ const String MESSAGE = '/message';
 const String CATEGORIES = '/categories';
 const String PRODUCTS_LIST = '/product_list';
 const String PRODUCT = '/product';
+const String PHONE = '/phone';
 

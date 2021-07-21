@@ -25,4 +25,9 @@ List<GetPage<dynamic>> routes = [
     page: () => Categories(),
     transition: Transition.fade,
   ),
+  GetPage(
+    name: route_name.PHONE,
+    page: () => Phone(),
+    transition: Transition.fade,
+  ),
 ];
