@@ -1,3 +1,4 @@
+import 'package:cucumber_mobile/pages/categories.dart';
 import 'package:get/get.dart';
 
 import 'package:cucumber_mobile/pages/pages.dart';
@@ -17,6 +18,11 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: route_name.PRODUCT,
     page: () => Product(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: route_name.CATEGORIES,
+    page: () => Categories(),
     transition: Transition.fade,
   ),
 ];

@@ -29,7 +29,7 @@ class BottomBarCustom extends StatelessWidget {
           _circleIconBuilder(icons.HOME, route_name.HOME),
           _circleIconBuilder(icons.WALLET, route_name.PRODUCT),
           _circleIconBuilder(icons.MESSAGE, route_name.PRODUCTS_LIST),
-          _circleIconBuilder(icons.MAN, route_name.MAN),
+          _circleIconBuilder(icons.MAN, route_name.CATEGORIES),
         ],
       ),
     );

@@ -2,7 +2,7 @@
 const String HOME = '/home';
 const String WALLET = '/wallet';
 const String MAN = '/man';
-const String MESSAGE = '/MESSAGE';
+const String MESSAGE = '/message';
 
 // Pages
 const String CATEGORIES = '/categories';

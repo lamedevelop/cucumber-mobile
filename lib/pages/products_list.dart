@@ -7,6 +7,7 @@ import 'package:cucumber_mobile/widgets/product_list/product_list.dart';
 import 'package:cucumber_mobile/provides/product_provider.dart';
 import 'package:cucumber_mobile/widgets/custom_scaffold.dart';
 import 'package:cucumber_mobile/config/palette.dart' as palette;
+import 'package:shimmer/shimmer.dart';
 
 class ProductsList extends StatefulWidget {
   @override
@@ -59,8 +60,10 @@ class _ProductsListState extends State<ProductsList> {
   }
 
   Widget _emptyGridViewBuilder() {
+    final int _crossAxisCount = MediaQuery.of(context).size.width ~/ 240;
     return GridView.count(
-      crossAxisCount: 2,
+      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+      crossAxisCount: _crossAxisCount,
       children: List.generate(6, (index) {
         return _emptyElemBuilder();
       }),
@@ -73,26 +76,34 @@ class _ProductsListState extends State<ProductsList> {
         clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
         children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.width * 0.30,
-            width: MediaQuery.of(context).size.width * 0.30,
-            decoration: BoxDecoration(
-              color: palette.Blue.PRIMARY_ICON,
-              shape: BoxShape.circle,
+          Shimmer.fromColors(
+            baseColor: palette.Blue.PRIMARY_ICON,
+            highlightColor: palette.Blue.PRIMARY_ICON.withOpacity(0.85),
+            child: Container(
+              height: 125,
+              width: 125,
+              decoration: BoxDecoration(
+                color: palette.Blue.PRIMARY_ICON,
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           Positioned(
             bottom: -10,
-            child: Container(
-              padding: EdgeInsets.all(8),
-              width: MediaQuery.of(context).size.width * 0.30,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(7),
-              ),
+            child: Shimmer.fromColors(
+              baseColor: Colors.white,
+              highlightColor: Colors.white.withOpacity(0.85),
               child: Container(
+                padding: EdgeInsets.all(8),
+                width: 125,
                 decoration: BoxDecoration(
-                  color: palette.Black.PRIMARY,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: palette.Black.PRIMARY,
+                  ),
                 ),
               ),
             ),
