@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'package:cucumber_mobile/widgets/product/product.dart';
 import 'package:cucumber_mobile/widgets/custom_scaffold.dart';
 
-class Product extends StatefulWidget {
-  @override
-  _ProductState createState() => _ProductState();
+class ProductController extends GetxController {
+  final String productImage = 'assets/images/milk.png';
 }
 
-class _ProductState extends State<Product> {
-  final String productImage = 'assets/images/milk.png';
-
+class Product extends GetView<ProductController> {
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      body: _listViewBuilder(),
-      hasShortTopBar: true,
-    );
+    return _listViewBuilder();
   }
 
   Widget _listViewBuilder() {
     return ListView(
       children: <Widget>[
-        _productImageBuilder(productImage),
+        _productImageBuilder(controller.productImage),
         ProductDescription(
           name: 'Молоко домашнее',
           volume: '1 литр',

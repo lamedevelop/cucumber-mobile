@@ -1,75 +1,89 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cucumber_mobile/widgets/bars/bars.dart';
+import 'package:cucumber_mobile/config/icons.dart' as icons;
 import 'package:cucumber_mobile/config/palette.dart' as palette;
+import 'package:cucumber_mobile/config/routes_names.dart' as route_name;
+import 'package:get/get.dart';
+import 'package:cucumber_mobile/pages/pages.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class CustomScaffoldBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<CustomScaffoldController>(() => CustomScaffoldController());
+    Get.lazyPut<HomePageController>(() => HomePageController());
+    Get.lazyPut<CategoriesController>(() => CategoriesController());
+    Get.lazyPut<ProductsListController>(() => ProductsListController());
+    Get.lazyPut<ProductController>(() => ProductController());
+  }
+}
+
+class CustomScaffoldController extends GetxController {
+  int tabIndex = 0;
+
+  final List<Widget> pagesList = [
+    HomePage(),
+    Categories(),
+    ProductsList(),
+    Product(),
+  ];
+
+  void changeTabIndex(int index) {
+    tabIndex = index;
+    update();
+  }
+}
 
 class CustomScaffold extends StatelessWidget {
-  final bool hasTopBar;
-  final bool hasBottomBar;
-  final bool hasShortTopBar;
-  final Widget body;
-
-  const CustomScaffold({
-    Key? key,
-    required this.body,
-    this.hasTopBar = true,
-    this.hasBottomBar = true,
-    this.hasShortTopBar = false,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(children: [
-          body,
-          hasTopBar ? _topBarBuilder(context) : Container(child: null),
-          hasBottomBar ? _bottomBarBuilder(context) : Container(child: null),
-        ]),
-      ),
-      drawer: hasTopBar && !hasShortTopBar ? _drawerBuilder(context) : null,
-    );
-  }
-
-  Widget _topBarBuilder(BuildContext context) {
-    return Positioned(
-      top: 0,
-      child: hasShortTopBar ? ShortTopBar() : MainTopBar(),
-      width: MediaQuery.of(context).size.width,
-    );
-  }
-
-  Widget _bottomBarBuilder(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      child: BottomBarCustom(),
-      width: MediaQuery.of(context).size.width,
-    );
-  }
-
-  Widget _drawerBuilder(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        canvasColor: Colors.transparent,
-      ),
-      child: Drawer(
-        child: Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: palette.Black.PRIMARY,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20),
-              bottomRight: Radius.circular(20),
+    return GetBuilder<CustomScaffoldController>(
+      builder: (controller) {
+        return Scaffold(
+          body: PageTransitionSwitcher(
+            transitionBuilder: (c, p, s) => FadeThroughTransition(
+              animation: p,
+              secondaryAnimation: s,
+              child: c,
             ),
+            child: controller.pagesList[controller.tabIndex],
           ),
-          child: ListView(
-            children: [
-              Text(
-                'Test row',
-                style: TextStyle(color: Colors.white),
-              ),
+          bottomNavigationBar: BottomNavigationBar(
+            unselectedItemColor: Colors.black,
+            selectedItemColor: Colors.redAccent,
+            onTap: controller.changeTabIndex,
+            currentIndex: controller.tabIndex,
+            showSelectedLabels: true,
+            showUnselectedLabels: false,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            items: [
+              _circleIconBuilder(icons.HOME, route_name.HOME),
+              _circleIconBuilder(icons.WALLET, route_name.CATEGORIES),
+              _circleIconBuilder(icons.MESSAGE, route_name.PRODUCTS_LIST),
+              _circleIconBuilder(icons.MAN, route_name.PRODUCT),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  _circleIconBuilder(String icon, String routeName) {
+    return BottomNavigationBarItem(
+      label: routeName,
+      icon: Container(
+        width: 45,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+        ),
+        child: SvgPicture.asset(
+          icon,
+          height: 45,
+          fit: BoxFit.scaleDown,
         ),
       ),
     );

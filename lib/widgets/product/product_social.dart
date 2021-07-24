@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import 'package:cucumber_mobile/config/palette.dart' as palette;
 import 'package:cucumber_mobile/config/icons.dart' as icons;
@@ -61,7 +62,7 @@ class _ProductSocialState extends State<ProductSocial> {
               ),
               child: IconButton(
                 icon: SocialCard(icon: icons.MESSAGE),
-                onPressed: () => {},
+                onPressed: () => {Get.toNamed('/home')},
               ),
             ),
           ],
