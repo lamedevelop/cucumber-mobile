@@ -11,25 +11,6 @@ class AppPages {
       name: '/',
       page: () => CustomScaffold(),
       binding: CustomScaffoldBinding(),
-    ),
-    GetPage(
-      name: route_name.HOME,
-      page: () => HomePage(),
-      binding: HomePageBinding(),
-    ),
-    GetPage(
-      name: route_name.PRODUCTS_LIST,
-      page: () => ProductsList(),
-      transition: Transition.downToUp,
-    ),
-    GetPage(
-      name: route_name.PRODUCT,
-      page: () => Product(),
-      transition: Transition.fade,
-    ),
-    GetPage(
-      name: route_name.CATEGORIES,
-      page: () => Categories(),
       transition: Transition.fade,
     ),
   ];

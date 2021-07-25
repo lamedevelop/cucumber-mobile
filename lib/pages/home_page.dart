@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:cucumber_mobile/widgets/custom_scaffold.dart';
 import 'package:cucumber_mobile/widgets/home_page/home_page.dart';
 import 'package:cucumber_mobile/config/routes_names.dart' as route_name;
+import 'package:cucumber_mobile/config/palette.dart' as palette;
 
 class HomePageBinding extends Bindings {
   @override
@@ -23,6 +24,7 @@ class HomePageController extends GetxController {
       return GetPageRoute(
         settings: settings,
         page: () => welcomeMessageBuilder1(changeTabIndex),
+        transition: Transition.cupertino,
       );
     }
 
@@ -30,6 +32,7 @@ class HomePageController extends GetxController {
       return GetPageRoute(
         settings: settings,
         page: () => welcomeMessageBuilder2(changeTabIndex),
+        transition: Transition.cupertino,
       );
     }
 
@@ -45,17 +48,14 @@ class HomePageController extends GetxController {
 class HomePage extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
-    return PageTransitionSwitcher(
-      duration: Duration(milliseconds: 1000),
+    return Container(
+      decoration: BoxDecoration(
+        color: palette.Black.PRIMARY,
+      ),
       child: Navigator(
         key: Get.nestedKey(1),
         initialRoute: '/first',
         onGenerateRoute: controller.onGenerateRoute,
-      ),
-      transitionBuilder: (c, p, s) => FadeThroughTransition(
-        animation: p,
-        secondaryAnimation: s,
-        child: c,
       ),
     );
   }
@@ -74,6 +74,9 @@ class welcomeMessageBuilder1 extends GetView<welcomeMessageController> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: palette.Black.PRIMARY,
+      ),
       child: Column(
         children: [
           WelcomeMessage('Привет. У нас етсь доставка, чтобы ей' +
@@ -103,13 +106,16 @@ class welcomeMessageBuilder2 extends GetView<welcomeMessageController2> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: palette.Black.PRIMARY,
+      ),
       child: Column(
         children: [
           WelcomeMessage('хех'),
           FloatingActionButton(
             child: Center(child: Text('Go to 1')),
             onPressed: () {
-              func(0);
+              Get.back(id: 1);
             },
           )
         ],

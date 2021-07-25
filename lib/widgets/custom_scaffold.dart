@@ -23,16 +23,52 @@ class CustomScaffoldBinding extends Bindings {
 class CustomScaffoldController extends GetxController {
   int tabIndex = 0;
 
-  final List<Widget> pagesList = [
-    HomePage(),
-    Categories(),
-    ProductsList(),
-    Product(),
+  final pages = <String>[
+    route_name.HOME,
+    route_name.CATEGORIES,
+    route_name.PRODUCTS_LIST,
+    route_name.PRODUCT,
   ];
 
   void changeTabIndex(int index) {
     tabIndex = index;
-    update();
+    Get.toNamed(pages[index], id: 2);
+  }
+
+  Route? onGenerateRoute(RouteSettings settings) {
+    if (settings.name == route_name.HOME) {
+      return GetPageRoute(
+        settings: settings,
+        page: () => HomePage(),
+        transition: Transition.fadeIn,
+      );
+    }
+
+    if (settings.name == route_name.CATEGORIES) {
+      return GetPageRoute(
+        settings: settings,
+        page: () => Categories(),
+        transition: Transition.fade,
+      );
+    }
+
+    if (settings.name == route_name.PRODUCTS_LIST) {
+      return GetPageRoute(
+        settings: settings,
+        page: () => ProductsList(),
+        transition: Transition.fade,
+      );
+    }
+
+    if (settings.name == route_name.PRODUCT) {
+      return GetPageRoute(
+        settings: settings,
+        page: () => Product(),
+        transition: Transition.fade,
+      );
+    }
+
+    return null;
   }
 }
 
@@ -42,14 +78,10 @@ class CustomScaffold extends StatelessWidget {
     return GetBuilder<CustomScaffoldController>(
       builder: (controller) {
         return Scaffold(
-          body: PageTransitionSwitcher(
-            duration: Duration(milliseconds: 500),
-            child: controller.pagesList[controller.tabIndex],
-            transitionBuilder: (c, p, s) => FadeThroughTransition(
-              animation: p,
-              secondaryAnimation: s,
-              child: c,
-            ),
+          body: Navigator(
+            key: Get.nestedKey(2),
+            initialRoute: route_name.HOME,
+            onGenerateRoute: controller.onGenerateRoute,
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.black,

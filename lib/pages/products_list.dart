@@ -36,9 +36,14 @@ class ProductsListController extends GetxController {
 class ProductsList extends GetView<ProductsListController> {
   @override
   Widget build(BuildContext context) {
-    return controller.isWaitForLoading
-        ? _emptyGridViewBuilder(context)
-        : _gridViewBuilder(controller.products);
+    return Container(
+      decoration: BoxDecoration(
+        color: palette.Black.PRIMARY,
+      ),
+      child: controller.isWaitForLoading
+          ? _emptyGridViewBuilder(context)
+          : _gridViewBuilder(controller.products),
+    );
   }
 
   Widget _gridViewBuilder(products) {

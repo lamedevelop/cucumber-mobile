@@ -10,14 +10,19 @@ class CategoriesController extends GetxController {}
 class Categories extends GetView<CategoriesController> {
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
+    return Container(
+      decoration: BoxDecoration(
+        color: palette.Black.PRIMARY,
+      ),
+      child: GridView.count(
         padding: EdgeInsets.only(left: 40, right: 40, top: 57),
         crossAxisCount: MediaQuery.of(context).size.width ~/ 220,
         children: List.generate(
           6,
           (index) => _emptyCategoryItemBuilder(index),
         ),
-      );
+      ),
+    );
   }
 
   Widget _emptyCategoryItemBuilder(index) {
