@@ -6,14 +6,39 @@ import 'package:cucumber_mobile/widgets/custom_scaffold.dart';
 import 'package:cucumber_mobile/widgets/home_page/home_page.dart';
 import 'package:cucumber_mobile/config/routes_names.dart' as route_name;
 
+class HomePageBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<HomePageController>(() => HomePageController());
+  }
+}
+
 class HomePageController extends GetxController {
-  int tabIndex = 0;
+  var tabIndex = 0.obs;
+
+  final pages = <String>['/first', '/second'];
+
+  Route? onGenerateRoute(RouteSettings settings) {
+    if (settings.name == '/first') {
+      return GetPageRoute(
+        settings: settings,
+        page: () => welcomeMessageBuilder1(changeTabIndex),
+      );
+    }
+
+    if (settings.name == '/second') {
+      return GetPageRoute(
+        settings: settings,
+        page: () => welcomeMessageBuilder2(changeTabIndex),
+      );
+    }
+
+    return null;
+  }
 
   void changeTabIndex(int index) {
-    print(index);
-    print(tabIndex);
-    tabIndex = index;
-    update();
+    tabIndex.value = index;
+    Get.toNamed(pages[index], id: 1);
   }
 }
 
@@ -21,29 +46,41 @@ class HomePage extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
     return PageTransitionSwitcher(
+      duration: Duration(milliseconds: 1000),
+      child: Navigator(
+        key: Get.nestedKey(1),
+        initialRoute: '/first',
+        onGenerateRoute: controller.onGenerateRoute,
+      ),
       transitionBuilder: (c, p, s) => FadeThroughTransition(
         animation: p,
         secondaryAnimation: s,
         child: c,
       ),
-      child: [
-        _welcomeMessageBuilder1(context, controller.changeTabIndex),
-        _welcomeMessageBuilder2(context, controller.changeTabIndex),
-      ][controller.tabIndex],
     );
   }
+}
 
-  Widget _welcomeMessageBuilder1(context, Function func) {
+class welcomeMessageController extends GetxController {}
+
+class welcomeMessageBuilder1 extends GetView<welcomeMessageController> {
+  Function func;
+  welcomeMessageBuilder1(
+    this.func, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
-          WelcomeMessage(
-              'Привет. У нас етсь доставка, чтобы ей воспользоваться-укажите свой номер телефона.'),
+          WelcomeMessage('Привет. У нас етсь доставка, чтобы ей' +
+              'воспользоваться-укажите свой номер телефона.'),
           FloatingActionButton(
-            child: Text('Go to 2'),
+            child: Center(child: Text('Go to 2')),
             onPressed: () {
-              print(11);
               func(1);
             },
           )
@@ -51,17 +88,27 @@ class HomePage extends GetView<HomePageController> {
       ),
     );
   }
+}
 
-  Widget _welcomeMessageBuilder2(context, Function func) {
+class welcomeMessageController2 extends GetxController {}
+
+class welcomeMessageBuilder2 extends GetView<welcomeMessageController2> {
+  Function func;
+  welcomeMessageBuilder2(
+    this.func, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
           WelcomeMessage('хех'),
           FloatingActionButton(
-            child: Text('Go to 1'),
+            child: Center(child: Text('Go to 1')),
             onPressed: () {
-              print(22);
               func(0);
             },
           )

@@ -15,8 +15,7 @@ class AppPages {
     GetPage(
       name: route_name.HOME,
       page: () => HomePage(),
-      transition: Transition.cupertino,
-      fullscreenDialog: true,
+      binding: HomePageBinding(),
     ),
     GetPage(
       name: route_name.PRODUCTS_LIST,

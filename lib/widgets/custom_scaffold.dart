@@ -43,12 +43,13 @@ class CustomScaffold extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           body: PageTransitionSwitcher(
+            duration: Duration(milliseconds: 500),
+            child: controller.pagesList[controller.tabIndex],
             transitionBuilder: (c, p, s) => FadeThroughTransition(
               animation: p,
               secondaryAnimation: s,
               child: c,
             ),
-            child: controller.pagesList[controller.tabIndex],
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.black,
