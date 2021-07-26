@@ -10,28 +10,33 @@ import 'package:cucumber_mobile/config/palette.dart' as palette;
 class HomePageBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<HomePageController>(() => HomePageController());
+    Get.lazyPut<welcomeMessageController>(() => welcomeMessageController());
+    Get.lazyPut<welcomeMessageController2>(() => welcomeMessageController2());
   }
 }
 
 class HomePageController extends GetxController {
-  var tabIndex = 0.obs;
+  int tabIndex = 0;
 
-  final pages = <String>['/first', '/second'];
+  final pages = <String>[
+    '${route_name.HOME}/first',
+    '${route_name.HOME}/second'
+  ];
 
   Route? onGenerateRoute(RouteSettings settings) {
-    if (settings.name == '/first') {
+    if (settings.name == '${route_name.HOME}/first') {
       return GetPageRoute(
         settings: settings,
         page: () => welcomeMessageBuilder1(changeTabIndex),
         transition: Transition.cupertino,
+        binding: HomePageBinding(),
       );
     }
 
-    if (settings.name == '/second') {
+    if (settings.name == '${route_name.HOME}/second') {
       return GetPageRoute(
         settings: settings,
-        page: () => welcomeMessageBuilder2(changeTabIndex),
+        page: () => welcomeMessageBuilder2(),
         transition: Transition.cupertino,
       );
     }
@@ -40,7 +45,7 @@ class HomePageController extends GetxController {
   }
 
   void changeTabIndex(int index) {
-    tabIndex.value = index;
+    tabIndex = index;
     Get.toNamed(pages[index], id: 1);
   }
 }
@@ -54,7 +59,7 @@ class HomePage extends GetView<HomePageController> {
       ),
       child: Navigator(
         key: Get.nestedKey(1),
-        initialRoute: '/first',
+        initialRoute: '${route_name.HOME}/first',
         onGenerateRoute: controller.onGenerateRoute,
       ),
     );
@@ -96,9 +101,7 @@ class welcomeMessageBuilder1 extends GetView<welcomeMessageController> {
 class welcomeMessageController2 extends GetxController {}
 
 class welcomeMessageBuilder2 extends GetView<welcomeMessageController2> {
-  Function func;
-  welcomeMessageBuilder2(
-    this.func, {
+  welcomeMessageBuilder2({
     Key? key,
   }) : super(key: key);
 
