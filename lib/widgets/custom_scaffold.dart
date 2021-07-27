@@ -44,18 +44,9 @@ class CustomScaffold extends StatelessWidget {
     return GetBuilder<CustomScaffoldController>(
       builder: (controller) {
         return Scaffold(
-          body: PageTransitionSwitcher(
-            duration: Duration(milliseconds: 500),
-            child: IndexedStack(
-              index: controller.tabIndexValue,
-              children: controller.pagesList,
-            ),
-            transitionBuilder: (c, p, s) => FadeThroughTransition(
-              animation: p,
-              secondaryAnimation: s,
-              child: c,
-              fillColor: palette.Black.PRIMARY,
-            ),
+          body: IndexedStack(
+            index: controller.tabIndexValue,
+            children: controller.pagesList,
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.black,
