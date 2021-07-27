@@ -21,9 +21,7 @@ class CustomScaffoldBinding extends Bindings {
 }
 
 class CustomScaffoldController extends GetxController {
-  var tabIndex = 0;
-
-  int get tabIndexValue => tabIndex;
+  var tabIndex = 0.obs;
 
   final List<Widget> pagesList = [
     HomePage(),
@@ -32,10 +30,7 @@ class CustomScaffoldController extends GetxController {
     Product(),
   ];
 
-  void changeTabIndex(int index) {
-    tabIndex = index;
-    update();
-  }
+  void changeTabIndex(int index) => tabIndex.value = index;
 }
 
 class CustomScaffold extends StatelessWidget {
@@ -44,16 +39,18 @@ class CustomScaffold extends StatelessWidget {
     return GetBuilder<CustomScaffoldController>(
       builder: (controller) {
         return Scaffold(
-          body: IndexedStack(
-            index: controller.tabIndexValue,
-            children: controller.pagesList,
+          body: Obx(
+            () => IndexedStack(
+              index: controller.tabIndex.value,
+              children: controller.pagesList,
+            ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.black,
             selectedItemColor: Colors.redAccent,
             onTap: controller.changeTabIndex,
-            currentIndex: controller.tabIndexValue,
-            showSelectedLabels: true,
+            currentIndex: controller.tabIndex.value,
+            showSelectedLabels: false,
             showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
