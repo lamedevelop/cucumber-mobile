@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:cucumber_mobile/widgets/custom_scaffold.dart';
 import 'package:cucumber_mobile/config/palette.dart' as palette;
 import 'package:shimmer/shimmer.dart';
 
-class Categories extends StatefulWidget {
-  Categories({Key? key}) : super(key: key);
+class CategoriesController extends GetxController {}
 
-  @override
-  _CategoriesState createState() => _CategoriesState();
-}
-
-class _CategoriesState extends State<Categories> {
+class Categories extends GetView<CategoriesController> {
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      body: GridView.count(
+    return Container(
+      decoration: BoxDecoration(
+        color: palette.Black.PRIMARY,
+      ),
+      child: GridView.count(
         padding: EdgeInsets.only(left: 40, right: 40, top: 57),
         crossAxisCount: MediaQuery.of(context).size.width ~/ 220,
         children: List.generate(

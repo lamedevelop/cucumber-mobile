@@ -12,13 +12,14 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'cucumber-mobile',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: palette.Black.PRIMARY,
         scaffoldBackgroundColor: palette.Black.PRIMARY,
         fontFamily: 'GothamPro',
       ),
-      getPages: routes,
-      initialRoute: route_name.HOME,
+      getPages: AppPages.routes,
+      initialRoute: '/',
     );
   }
 }

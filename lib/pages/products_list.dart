@@ -9,42 +9,40 @@ import 'package:cucumber_mobile/widgets/custom_scaffold.dart';
 import 'package:cucumber_mobile/config/palette.dart' as palette;
 import 'package:shimmer/shimmer.dart';
 
-class ProductsList extends StatefulWidget {
-  @override
-  _ProductsListState createState() => _ProductsListState();
-}
-
-class _ProductsListState extends State<ProductsList> {
-  bool _isWaitForLoading = true;
-  List<Product> _products = [];
+class ProductsListController extends GetxController {
+  var isWaitForLoading = true;
+  var products = <Product>[];
 
   Future<void> _checkParseData() async {
     try {
       var data = await fetchProducts(http.Client());
-      setState(() {
-        _products = data;
-        _isWaitForLoading = false;
-      });
+      products = data;
+      isWaitForLoading = false;
+      update();
     } catch (error) {
-      setState(() {
-        _isWaitForLoading = true;
-      });
+      isWaitForLoading = true;
+      update();
       Get.snackbar('Error', '$error');
     }
   }
 
   @override
-  void initState() {
-    super.initState();
-    _checkParseData();
+  void onInit() async {
+    await _checkParseData();
+    super.onInit();
   }
+}
 
+class ProductsList extends GetView<ProductsListController> {
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      body: _isWaitForLoading
-          ? _emptyGridViewBuilder()
-          : _gridViewBuilder(_products),
+    return Container(
+      decoration: BoxDecoration(
+        color: palette.Black.PRIMARY,
+      ),
+      child: controller.isWaitForLoading
+          ? _emptyGridViewBuilder(context)
+          : _gridViewBuilder(controller.products),
     );
   }
 
@@ -59,7 +57,7 @@ class _ProductsListState extends State<ProductsList> {
     );
   }
 
-  Widget _emptyGridViewBuilder() {
+  Widget _emptyGridViewBuilder(BuildContext context) {
     final int _crossAxisCount = MediaQuery.of(context).size.width ~/ 240;
     return Center(
       child: Column(
