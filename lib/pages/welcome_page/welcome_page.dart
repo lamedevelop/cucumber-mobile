@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'welcome_controller.dart';
 import 'package:cucumber_mobile/theme/theme.dart';
+import 'welcome_controller.dart';
 
 class WelcomePage extends GetView<WelcomeController> {
   final themes = Get.find<Themes>();

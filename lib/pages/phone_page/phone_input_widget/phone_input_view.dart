@@ -14,8 +14,9 @@ class PhoneInputPage extends GetView<PhoneInputController> {
         cursorColor: Color(0xFF000000),
         textAlignVertical: TextAlignVertical.bottom,
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+        keyboardType: TextInputType.phone,
         style: TextStyle(
-          fontSize: 27.0,
+          fontSize: Get.context!.height * 0.033,
           color: Get.context!.theme.primaryColor,
           fontWeight: FontWeight.w700,
         ),

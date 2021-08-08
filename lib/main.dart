@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       getPages: AppPages.routes,
-      initialRoute: routes_names.PHONE,
+      initialRoute: routes_names.WELCOME,
     );
   }
 }

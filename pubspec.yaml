@@ -10,10 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.3
-  flutter_svg: ^0.22.0
-  http: ^0.13.3
-  get: ^4.3.0
-  provider: ^5.0.0
+  flutter_svg: ^0.22.0 # Поддержка отрисовки svg
+  http: ^0.13.3 # Позволяет выполнять http запросы
+  get: ^4.3.0 # Это основа прилаги - GetX
+  pin_code_fields: ^7.3.0 # Для отрисовки формы пинкодов
+  sliding_up_panel: ^2.0.0+1 # Меню-список внизу
 
 dev_dependencies:
   flutter_test:
@@ -32,3 +33,5 @@ flutter:
     - family: GothamPro
       fonts:
         - asset: assets/fonts/GothamPro.ttf
+        - asset: assets/fonts/GothamPro-Bold.ttf
+          weight: 700

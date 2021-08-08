@@ -21,5 +21,10 @@ class AppPages {
       page: () => SmsAuthPage(),
       transition: Transition.fade,
     ),
+    GetPage(
+      name: routes_names.HOME,
+      page: () => HomePage(),
+      transition: Transition.fade,
+    ),
   ];
 }
